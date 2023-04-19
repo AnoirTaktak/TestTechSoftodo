@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="../css/HomePage.css">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Cours</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">HTML et CSS</a>
+                            <a class="dropdown-item" href="#">JavaScript</a>
+                            <a class="dropdown-item" href="#">PHP et MySQL</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Title" aria-label="Search">
+                </form>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Status" aria-label="Search">
+                </form>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Filename" aria-label="Search">
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+            </div>
+        </nav>
+
+        
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+        
+        <script>
+            
+           // var cardContainer = document.getElementById('card-container');
+            fetch('https://localhost:8000/getAllProjects')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    let l = data.length;
+                    console.log(l);
+                    var cardContainer = document.getElementById('card-container');
+                   console.log(cardContainer);
+                   var cards = [];
+                    for (let i = 0; i <= 9; i++) {
+                    console.log(i,data[i])
+                    cards.push(`<div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src=${data[i].image} alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title">${data[i].title}</h5>
+                        <p class="card-text">${data[i].description}.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        </div>`);
+                    }
+                    console.log(cards);
+                    cardContainer.innerHTML = cards.join('');
+                    console.log(cardContainer);
+                 //   body.appendchild(cardContainer);
+                    }
+                    );
+                    </script>
+                <div id="card-container">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src=${data[i].image} alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title">${data[i].title}</h5>
+                        <p class="card-text">${data[i].description}.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        </div>
+
+                </div>   
+    </body>
+</html>
